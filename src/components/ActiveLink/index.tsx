@@ -14,12 +14,12 @@ interface ActiveLink extends LinkProps<RouteType> {
 export function ActiveLink({
 	activeClassName,
 	className,
-	exact = false,
+	exact = true,
 	...props
 }: ActiveLink) {
 	const pathName = usePathname();
 	const isActive =
-		pathName === props.href || (!exact && pathName.startsWith(props.href));
+		pathName === props.href || (exact && pathName.startsWith(props.href));
 
 	return (
 		<Link

@@ -1,12 +1,11 @@
 "use client";
 import { useState } from "react";
 import { AddToCartButtonShort } from "../AddToCartButtonShort";
-import { ProductItemCategrories } from "@components/ProductItem/ProductItemCategories";
 import { ProductItemImage } from "@components/ProductItem/ProductItemImage";
 import { parsePrice } from "@/utils/parsePrice";
-import { type IProductListItem } from "@/types/IProductListItem";
+import { type IProduct } from "@/types/IProduct";
 
-export const ProductItem = ({ title, price, categories, image }: IProductListItem) => {
+export const ProductItem = ({ title, price, image }: IProduct) => {
 	const [isHovering, setIsHovered] = useState(false);
 
 	const onMouseEnter = () => setIsHovered(true);
@@ -14,7 +13,9 @@ export const ProductItem = ({ title, price, categories, image }: IProductListIte
 
 	return (
 		<div
-			className={`border-[1px] border-solid ${isHovering ? "border-black" : "border-transparent"}`}
+			className={`border-[1px] border-solid ${
+				isHovering ? "border-black" : "border-transparent"
+			}`}
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
 		>
@@ -22,7 +23,7 @@ export const ProductItem = ({ title, price, categories, image }: IProductListIte
 			<div className="flex w-full items-center justify-between pr-4 text-left">
 				<div>
 					<h3>{title}</h3>
-					<ProductItemCategrories categories={categories} />
+					{/* <ProductItemCategrories categories={categories} /> */}
 					<p>{parsePrice(price)}</p>
 				</div>
 				<div>

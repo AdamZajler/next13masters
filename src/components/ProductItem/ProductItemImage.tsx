@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { type IProductListItem } from "@/types/IProductListItem";
+import { type IProduct } from "@/types/IProduct";
 
 export const ProductItemImage = ({
 	image,
 	title,
 }: {
-	image: IProductListItem["image"];
+	image: IProduct["image"];
 	title: string;
 }) => {
 	const [isHovering, setIsHovered] = useState(false);
@@ -17,13 +17,14 @@ export const ProductItemImage = ({
 
 	return (
 		<Image
-			width={383}
-			height={383}
-			src={isHovering ? image.hover.url : image.main.url}
-			alt={image.main.alt || `Obraz produktu ${title}`}
+			width={320}
+			height={320}
+			src={isHovering ? image : image}
+			alt={`Obraz produktu ${title}`}
+			// alt={image.main.alt || `Obraz produktu ${title}`}
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
-			style={{ objectFit: "cover" }}
+			style={{ objectFit: "contain", maxHeight: 320 }}
 		/>
 	);
 };

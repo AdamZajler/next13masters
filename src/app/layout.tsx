@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import { Inter } from "next/font/google";
 import { ActiveLink } from "@/components/ActiveLink";
 
@@ -21,18 +21,21 @@ export default function RootLayout({
 				<nav>
 					<ul className="flex justify-center gap-4">
 						<ActiveLink activeClassName="underline" href="/" title="Home">
-							Strona główna
+							Home
 						</ActiveLink>
 						<ActiveLink
 							activeClassName="underline"
-							href="/products"
+							href={"/products" as Route}
 							title="All"
+							exact={false}
 						>
 							Produkty
 						</ActiveLink>
 					</ul>
 				</nav>
-				{children}
+				<main className="container-xl flex min-h-screen flex-col items-center justify-between p-24">
+					{children}
+				</main>
 			</body>
 		</html>
 	);
