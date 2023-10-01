@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Pagination } from "@/components/Pagination";
 import { ProductList } from "@/components/ProductList";
 import { type IProduct } from "@/types/IProduct";
+import "@/components/main.css";
 
 export async function generateStaticParams() {
 	return [
@@ -35,7 +36,7 @@ export default async function Home({
 	).then((res) => res.json())) as IProduct[];
 
 	return (
-		<main className="container-xl flex min-h-screen flex-col items-center justify-between p-24">
+		<main className="container-xl flex min-h-screen w-full flex-col items-center justify-between p-24">
 			<ProductList products={products} />
 			<div className="mt-12">
 				<Pagination href="/products/" length={5} />

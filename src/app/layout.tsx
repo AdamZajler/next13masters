@@ -18,21 +18,41 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<nav>
-					<ul className="flex justify-center gap-4">
-						<ActiveLink activeClassName="underline" href="/" title="Home">
-							Home
-						</ActiveLink>
-						<ActiveLink
-							activeClassName="underline"
-							href={"/products" as Route}
-							title="All"
-							exact={false}
+				<div className="ju flex justify-between p-8">
+					<nav>
+						<ul className="flex justify-center gap-4">
+							<ActiveLink activeClassName="underline" href="/" title="Home">
+								Home
+							</ActiveLink>
+							<ActiveLink
+								activeClassName="underline"
+								href={"/products" as Route}
+								title="All"
+								exact={false}
+							>
+								Produkty
+							</ActiveLink>
+						</ul>
+					</nav>
+					<div className="flex gap-2">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
 						>
-							Produkty
-						</ActiveLink>
-					</ul>
-				</nav>
+							<circle cx="8" cy="21" r="1" />
+							<circle cx="19" cy="21" r="1" />
+							<path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+						</svg>
+						0
+					</div>
+				</div>
 				<main className="container-xl flex min-h-screen flex-col items-center justify-between p-24">
 					{children}
 				</main>

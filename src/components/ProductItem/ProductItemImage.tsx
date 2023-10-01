@@ -16,15 +16,20 @@ export const ProductItemImage = ({
 	const onMouseLeave = () => setIsHovered(false);
 
 	return (
-		<Image
-			width={320}
-			height={320}
-			src={isHovering ? image : image}
-			alt={`Obraz produktu ${title}`}
-			// alt={image.main.alt || `Obraz produktu ${title}`}
-			onMouseEnter={onMouseEnter}
-			onMouseLeave={onMouseLeave}
-			style={{ objectFit: "contain", maxHeight: 320 }}
-		/>
+		<div className="relative min-h-[400px] w-[320px] overflow-hidden transition-all">
+			<Image
+				src={image}
+				alt={`Obraz produktu ${title}`}
+				// alt={image.main.alt || `Obraz produktu ${title}`}
+				onMouseEnter={onMouseEnter}
+				onMouseLeave={onMouseLeave}
+				style={{
+					objectFit: "cover",
+					transform: isHovering ? "scale(1.25)" : undefined,
+					transition: "transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+				}}
+				fill
+			/>
+		</div>
 	);
 };
