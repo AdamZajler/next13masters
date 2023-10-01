@@ -1,24 +1,37 @@
 "use client";
 import Link from "next/link";
 import { type Route } from "next";
+import Image from "next/image";
 import { AddToCartButtonShort } from "../AddToCartButtonShort";
-import { ProductItemImage } from "@components/ProductItem/ProductItemImage";
 import { parsePrice } from "@/utils/parsePrice";
-import { type IProduct } from "@/types/IProduct";
+import { type ProductListItemFragment } from "@/gql/graphql";
+import { generateStrapiUrl } from "@/utils/generateStrapiUrl";
 
-export const ProductItem = ({ title, price, image, id }: IProduct) => {
-	const url = `/product/${id}` as Route;
+export const ProductItem = (product: ProductListItemFragment) => {
+	const url = `/product/${product.attributes!.slug}` as Route;
 
 	return (
 		<div>
-			<Link href={url}>
-				<ProductItemImage image={image} title={title} />
-			</Link>
+			{product.attributes?.images.data[0]?.attributes?.url ? (
+				<Link href={url}>
+					<div className="aspect-square overflow-hidden rounded-md border bg-slate-50 hover:bg-slate-100">
+						<Image
+							width={320}
+							height={320}
+							alt={`Obraz produktu ${product.attributes.title}`}
+							src={generateStrapiUrl(
+								product.attributes.images.data[0].attributes?.url,
+							)}
+							className="h-full w-full object-cover object-center p-4 transition-transform hover:scale-105"
+						/>
+					</div>
+				</Link>
+			) : null}
 			<div className="flex w-full items-center justify-between text-left">
 				<Link href={url}>
 					<div>
-						<h3>{title}</h3>
-						<p>{parsePrice(price)}</p>
+						<h3>{product.attributes!.title}</h3>
+						<p>{parsePrice(product.attributes!.price)}</p>
 					</div>
 				</Link>
 				<div>

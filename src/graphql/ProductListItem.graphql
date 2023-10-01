@@ -1,0 +1,18 @@
+fragment ProductListItem on ProductEntity {
+	id
+	attributes {
+		slug
+		title
+		description
+		price
+		images {
+			data {
+				attributes {
+					url
+					alternativeText
+				}
+			}
+		}
+		categories
+	}
+}

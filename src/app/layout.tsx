@@ -3,7 +3,7 @@ import type { Metadata, Route } from "next";
 import { Inter } from "next/font/google";
 import { ActiveLink } from "@/components/ActiveLink";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -21,16 +21,34 @@ export default function RootLayout({
 				<div className="ju flex justify-between p-8">
 					<nav>
 						<ul className="flex justify-center gap-4">
-							<ActiveLink activeClassName="underline" href="/" title="Home">
+							<ActiveLink
+								activeClassName="underline"
+								href="/"
+								title="Home"
+								exact={false}
+							>
 								Home
 							</ActiveLink>
 							<ActiveLink
 								activeClassName="underline"
-								href={"/products" as Route}
+								href={"/products/1" as Route}
 								title="All"
-								exact={false}
 							>
 								Produkty
+							</ActiveLink>
+							<ActiveLink
+								activeClassName="underline"
+								href={"/categories/t-shirts" as Route}
+								title="All"
+							>
+								T-shirts
+							</ActiveLink>
+							<ActiveLink
+								activeClassName="underline"
+								href={"/categories/cap" as Route}
+								title="All"
+							>
+								Czapki
 							</ActiveLink>
 						</ul>
 					</nav>

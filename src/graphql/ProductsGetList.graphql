@@ -1,0 +1,7 @@
+query ProductsGetList($page: Int!) {
+	products(pagination: { page: $page, pageSize: 3 }) {
+		data {
+			...ProductListItem
+		}
+	}
+}

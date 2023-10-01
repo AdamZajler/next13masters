@@ -1,7 +1,11 @@
+import { type ProductListItemFragment } from "@/gql/graphql";
 import { ProductItem } from "@components/ProductItem";
-import { type IProduct } from "@/types/IProduct";
 
-export const ProductList = ({ products }: { products: IProduct[] }) => {
+export const ProductList = ({
+	products,
+}: {
+	products: ProductListItemFragment[];
+}) => {
 	return (
 		<ul
 			className="products-grid grid w-full justify-center gap-2"
