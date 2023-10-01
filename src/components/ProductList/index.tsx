@@ -1,9 +1,12 @@
 import { ProductItem } from "@components/ProductItem";
-import { type IProductListItem } from "@/types/IProductListItem";
+import { type IProduct } from "@/types/IProduct";
 
-export const ProductList = ({ products }: { products: IProductListItem[] }) => {
+export const ProductList = ({ products }: { products: IProduct[] }) => {
 	return (
-		<ul className="grid grid-cols-4 gap-4" data-testid="products-list">
+		<ul
+			className="products-grid grid w-full justify-center gap-2"
+			data-testid="products-list"
+		>
 			{products.map((product, index) => (
 				<li key={index}>
 					<ProductItem {...product} />
