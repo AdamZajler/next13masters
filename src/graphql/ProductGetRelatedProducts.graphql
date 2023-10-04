@@ -1,0 +1,10 @@
+query GetRelatedProducts($slug: String!) {
+	products(
+		filters: { slug: { not: { eq: $slug } } }
+		pagination: { limit: 4 }
+	) {
+		data {
+			...ProductListItem
+		}
+	}
+}

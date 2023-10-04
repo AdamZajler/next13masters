@@ -934,6 +934,13 @@ export type ProductGetBySlugQueryVariables = Exact<{
 
 export type ProductGetBySlugQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug: string, title: string, description: string, price: number, categories: Enum_Product_Categories, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }> } | null };
 
+export type GetRelatedProductsQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetRelatedProductsQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug: string, title: string, description: string, price: number, categories: Enum_Product_Categories, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }> } | null };
+
 export type ProductListItemFragment = { id?: string | null, attributes?: { slug: string, title: string, description: string, price: number, categories: Enum_Product_Categories, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null };
 
 export type ProductsGetByCategorySlugQueryVariables = Exact<{
@@ -1011,6 +1018,32 @@ export const ProductGetBySlugDocument = new TypedDocumentString(`
     categories
   }
 }`) as unknown as TypedDocumentString<ProductGetBySlugQuery, ProductGetBySlugQueryVariables>;
+export const GetRelatedProductsDocument = new TypedDocumentString(`
+    query GetRelatedProducts($slug: String!) {
+  products(filters: {slug: {not: {eq: $slug}}}, pagination: {limit: 4}) {
+    data {
+      ...ProductListItem
+    }
+  }
+}
+    fragment ProductListItem on ProductEntity {
+  id
+  attributes {
+    slug
+    title
+    description
+    price
+    images {
+      data {
+        attributes {
+          url
+          alternativeText
+        }
+      }
+    }
+    categories
+  }
+}`) as unknown as TypedDocumentString<GetRelatedProductsQuery, GetRelatedProductsQueryVariables>;
 export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
     query ProductsGetByCategorySlug($page: Int!, $slug: String!) {
   products(
