@@ -6,5 +6,11 @@ query ProductsGetByCategorySlug($page: Int!, $slug: String!) {
 		data {
 			...ProductListItem
 		}
+		meta {
+			pagination {
+				pageCount
+				page
+			}
+		}
 	}
 }

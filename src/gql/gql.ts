@@ -16,9 +16,10 @@ import * as types from './graphql';
 const documents = {
     "query ProductGetBySlug($slug: String!) {\n  products(filters: {slug: {eq: $slug}}) {\n    data {\n      ...ProductListItem\n    }\n  }\n}": types.ProductGetBySlugDocument,
     "query GetRelatedProducts($slug: String!) {\n  products(filters: {slug: {not: {eq: $slug}}}, pagination: {limit: 4}) {\n    data {\n      ...ProductListItem\n    }\n  }\n}": types.GetRelatedProductsDocument,
-    "fragment ProductListItem on ProductEntity {\n  id\n  attributes {\n    slug\n    title\n    description\n    price\n    images {\n      data {\n        attributes {\n          url\n          alternativeText\n        }\n      }\n    }\n    categories\n  }\n}": types.ProductListItemFragmentDoc,
-    "query ProductsGetByCategorySlug($page: Int!, $slug: String!) {\n  products(\n    pagination: {page: $page, pageSize: 3}\n    filters: {categories: {eq: $slug}}\n  ) {\n    data {\n      ...ProductListItem\n    }\n  }\n}": types.ProductsGetByCategorySlugDocument,
-    "query ProductsGetList($page: Int!) {\n  products(pagination: {page: $page, pageSize: 3}) {\n    data {\n      ...ProductListItem\n    }\n  }\n}": types.ProductsGetListDocument,
+    "fragment ProductListItem on ProductEntity {\n  id\n  attributes {\n    slug\n    title\n    description\n    price\n    images {\n      data {\n        attributes {\n          url\n          alternativeText\n        }\n      }\n    }\n    categories\n    size\n    colors\n  }\n}": types.ProductListItemFragmentDoc,
+    "query ProductsGetByCategorySlug($page: Int!, $slug: String!) {\n  products(\n    pagination: {page: $page, pageSize: 3}\n    filters: {categories: {eq: $slug}}\n  ) {\n    data {\n      ...ProductListItem\n    }\n    meta {\n      pagination {\n        pageCount\n        page\n      }\n    }\n  }\n}": types.ProductsGetByCategorySlugDocument,
+    "query ProductsGetList($page: Int!) {\n  products(pagination: {page: $page, pageSize: 3}) {\n    data {\n      ...ProductListItem\n    }\n    meta {\n      pagination {\n        pageCount\n        page\n      }\n    }\n  }\n}": types.ProductsGetListDocument,
+    "query SearchGetProductsByQuery($query: String!) {\n  products(filters: {slug: {startsWith: $query}}) {\n    data {\n      ...ProductListItem\n    }\n  }\n}": types.SearchGetProductsByQueryDocument,
 };
 
 /**
@@ -32,15 +33,19 @@ export function graphql(source: "query GetRelatedProducts($slug: String!) {\n  p
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment ProductListItem on ProductEntity {\n  id\n  attributes {\n    slug\n    title\n    description\n    price\n    images {\n      data {\n        attributes {\n          url\n          alternativeText\n        }\n      }\n    }\n    categories\n  }\n}"): typeof import('./graphql').ProductListItemFragmentDoc;
+export function graphql(source: "fragment ProductListItem on ProductEntity {\n  id\n  attributes {\n    slug\n    title\n    description\n    price\n    images {\n      data {\n        attributes {\n          url\n          alternativeText\n        }\n      }\n    }\n    categories\n    size\n    colors\n  }\n}"): typeof import('./graphql').ProductListItemFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductsGetByCategorySlug($page: Int!, $slug: String!) {\n  products(\n    pagination: {page: $page, pageSize: 3}\n    filters: {categories: {eq: $slug}}\n  ) {\n    data {\n      ...ProductListItem\n    }\n  }\n}"): typeof import('./graphql').ProductsGetByCategorySlugDocument;
+export function graphql(source: "query ProductsGetByCategorySlug($page: Int!, $slug: String!) {\n  products(\n    pagination: {page: $page, pageSize: 3}\n    filters: {categories: {eq: $slug}}\n  ) {\n    data {\n      ...ProductListItem\n    }\n    meta {\n      pagination {\n        pageCount\n        page\n      }\n    }\n  }\n}"): typeof import('./graphql').ProductsGetByCategorySlugDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductsGetList($page: Int!) {\n  products(pagination: {page: $page, pageSize: 3}) {\n    data {\n      ...ProductListItem\n    }\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
+export function graphql(source: "query ProductsGetList($page: Int!) {\n  products(pagination: {page: $page, pageSize: 3}) {\n    data {\n      ...ProductListItem\n    }\n    meta {\n      pagination {\n        pageCount\n        page\n      }\n    }\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query SearchGetProductsByQuery($query: String!) {\n  products(filters: {slug: {startsWith: $query}}) {\n    data {\n      ...ProductListItem\n    }\n  }\n}"): typeof import('./graphql').SearchGetProductsByQueryDocument;
 
 
 export function graphql(source: string) {

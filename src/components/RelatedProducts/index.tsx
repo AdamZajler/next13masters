@@ -16,7 +16,7 @@ export const RelatedProducts = async ({
 	}
 
 	return (
-		<div className="flex flex-col gap-8">
+		<div className="flex flex-col gap-8" data-testid="related-products">
 			<h3>Powiązane produkty</h3>
 			<ul className="flex">
 				{products.products.data.map((product, index) => (

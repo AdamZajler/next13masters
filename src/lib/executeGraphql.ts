@@ -8,8 +8,9 @@ export const executeGraphql = async <TResult, TVariables>(
 	query: TypedDocumentString<TResult, TVariables>,
 	variables: TVariables,
 ): Promise<TResult> => {
-	if (!process.env.GRAPHQL_URL)
+	if (!process.env.GRAPHQL_URL) {
 		throw new TypeError("GRAPHQL_URL is not defined");
+	}
 
 	const res = await fetch(process.env.GRAPHQL_URL, {
 		method: "POST",

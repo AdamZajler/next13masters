@@ -7,11 +7,7 @@ import { executeGraphql } from "@/lib/executeGraphql";
 import { ProductsGetByCategorySlugDocument } from "@/gql/graphql";
 
 export async function generateStaticParams() {
-	return [
-		{ slug: "cap", pageNumber: "1" },
-		{ slug: "cap", pageNumber: "2" },
-		{ slug: "t-shirts", pageNumber: "1" },
-	];
+	return [{ slug: "cap" }, { slug: "t-shirts" }];
 }
 
 export const generateMetadata = async ({
@@ -46,10 +42,7 @@ export default async function Home({
 			<main className="container-xl flex min-h-screen w-full flex-col items-center justify-between p-24">
 				<ProductList products={categories.products.data} />
 				<div className="mt-12">
-					<Pagination
-						href="/products/"
-						length={categories.products.meta.pagination.pageCount}
-					/>
+					<Pagination href="/collections/" length={1} />
 				</div>
 			</main>
 		</>

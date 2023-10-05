@@ -26,7 +26,7 @@ export function ActiveLink({
 			{...props}
 			className={clsx(
 				`font-bold text-blue-400`,
-				isActive && `${activeClassName || ""}`,
+				isActive && `${activeClassName + " border-b-1 border-blue-400" || ""}`,
 				className && `${className}`,
 			)}
 			aria-current={isActive || undefined}

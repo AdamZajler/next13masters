@@ -413,11 +413,13 @@ export type PaginationArg = {
 
 export type Product = {
   categories: Enum_Product_Categories;
+  colors?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   description: Scalars['String']['output'];
   images: UploadFileRelationResponseCollection;
   price: Scalars['Float']['output'];
-  slug: Scalars['String']['output'];
+  size?: Maybe<Scalars['JSON']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
@@ -446,12 +448,14 @@ export type ProductEntityResponseCollection = {
 export type ProductFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ProductFiltersInput>>>;
   categories?: InputMaybe<StringFilterInput>;
+  colors?: InputMaybe<JsonFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<ProductFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ProductFiltersInput>>>;
   price?: InputMaybe<FloatFilterInput>;
+  size?: InputMaybe<JsonFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -459,9 +463,11 @@ export type ProductFiltersInput = {
 
 export type ProductInput = {
   categories?: InputMaybe<Enum_Product_Categories>;
+  colors?: InputMaybe<Scalars['JSON']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   images?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   price?: InputMaybe<Scalars['Float']['input']>;
+  size?: InputMaybe<Scalars['JSON']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -932,16 +938,16 @@ export type ProductGetBySlugQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetBySlugQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug: string, title: string, description: string, price: number, categories: Enum_Product_Categories, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }> } | null };
+export type ProductGetBySlugQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug?: string | null, title: string, description: string, price: number, categories: Enum_Product_Categories, size?: unknown | null, colors?: unknown | null, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }> } | null };
 
 export type GetRelatedProductsQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetRelatedProductsQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug: string, title: string, description: string, price: number, categories: Enum_Product_Categories, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }> } | null };
+export type GetRelatedProductsQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug?: string | null, title: string, description: string, price: number, categories: Enum_Product_Categories, size?: unknown | null, colors?: unknown | null, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }> } | null };
 
-export type ProductListItemFragment = { id?: string | null, attributes?: { slug: string, title: string, description: string, price: number, categories: Enum_Product_Categories, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null };
+export type ProductListItemFragment = { id?: string | null, attributes?: { slug?: string | null, title: string, description: string, price: number, categories: Enum_Product_Categories, size?: unknown | null, colors?: unknown | null, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null };
 
 export type ProductsGetByCategorySlugQueryVariables = Exact<{
   page: Scalars['Int']['input'];
@@ -949,14 +955,21 @@ export type ProductsGetByCategorySlugQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetByCategorySlugQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug: string, title: string, description: string, price: number, categories: Enum_Product_Categories, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }> } | null };
+export type ProductsGetByCategorySlugQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug?: string | null, title: string, description: string, price: number, categories: Enum_Product_Categories, size?: unknown | null, colors?: unknown | null, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }>, meta: { pagination: { pageCount: number, page: number } } } | null };
 
 export type ProductsGetListQueryVariables = Exact<{
   page: Scalars['Int']['input'];
 }>;
 
 
-export type ProductsGetListQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug: string, title: string, description: string, price: number, categories: Enum_Product_Categories, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }> } | null };
+export type ProductsGetListQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug?: string | null, title: string, description: string, price: number, categories: Enum_Product_Categories, size?: unknown | null, colors?: unknown | null, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }>, meta: { pagination: { pageCount: number, page: number } } } | null };
+
+export type SearchGetProductsByQueryQueryVariables = Exact<{
+  query: Scalars['String']['input'];
+}>;
+
+
+export type SearchGetProductsByQueryQuery = { products?: { data: Array<{ id?: string | null, attributes?: { slug?: string | null, title: string, description: string, price: number, categories: Enum_Product_Categories, size?: unknown | null, colors?: unknown | null, images: { data: Array<{ attributes?: { url: string, alternativeText?: string | null } | null }> } } | null }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -989,6 +1002,8 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
       }
     }
     categories
+    size
+    colors
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
@@ -1016,6 +1031,8 @@ export const ProductGetBySlugDocument = new TypedDocumentString(`
       }
     }
     categories
+    size
+    colors
   }
 }`) as unknown as TypedDocumentString<ProductGetBySlugQuery, ProductGetBySlugQueryVariables>;
 export const GetRelatedProductsDocument = new TypedDocumentString(`
@@ -1042,6 +1059,8 @@ export const GetRelatedProductsDocument = new TypedDocumentString(`
       }
     }
     categories
+    size
+    colors
   }
 }`) as unknown as TypedDocumentString<GetRelatedProductsQuery, GetRelatedProductsQueryVariables>;
 export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
@@ -1053,6 +1072,12 @@ export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
     data {
       ...ProductListItem
     }
+    meta {
+      pagination {
+        pageCount
+        page
+      }
+    }
   }
 }
     fragment ProductListItem on ProductEntity {
@@ -1071,11 +1096,47 @@ export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
       }
     }
     categories
+    size
+    colors
   }
 }`) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList($page: Int!) {
   products(pagination: {page: $page, pageSize: 3}) {
+    data {
+      ...ProductListItem
+    }
+    meta {
+      pagination {
+        pageCount
+        page
+      }
+    }
+  }
+}
+    fragment ProductListItem on ProductEntity {
+  id
+  attributes {
+    slug
+    title
+    description
+    price
+    images {
+      data {
+        attributes {
+          url
+          alternativeText
+        }
+      }
+    }
+    categories
+    size
+    colors
+  }
+}`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
+export const SearchGetProductsByQueryDocument = new TypedDocumentString(`
+    query SearchGetProductsByQuery($query: String!) {
+  products(filters: {slug: {startsWith: $query}}) {
     data {
       ...ProductListItem
     }
@@ -1097,5 +1158,7 @@ export const ProductsGetListDocument = new TypedDocumentString(`
       }
     }
     categories
+    size
+    colors
   }
-}`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
+}`) as unknown as TypedDocumentString<SearchGetProductsByQueryQuery, SearchGetProductsByQueryQueryVariables>;

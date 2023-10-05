@@ -68,6 +68,24 @@ export default async function ProductPage({
 				<div className="flex flex-col gap-2">
 					<h1 className="text-2xl">{product?.title}</h1>
 					<p>{parsePrice(product.price)}</p>
+					{product.colors ? (
+						<select>
+							{(product.colors as string[]).map((color, index) => (
+								<option key={index} value={color}>
+									{color}
+								</option>
+							))}
+						</select>
+					) : null}
+					{product.size ? (
+						<select>
+							{(product.size as string[]).map((size, index) => (
+								<option key={index} value={size}>
+									{size}
+								</option>
+							))}
+						</select>
+					) : null}
 					<p
 						dangerouslySetInnerHTML={{
 							__html: product.description,

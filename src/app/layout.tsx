@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata, Route } from "next";
 import { Inter } from "next/font/google";
 import { ActiveLink } from "@/components/ActiveLink";
+import { Search } from "@/components/Search";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
@@ -34,7 +35,7 @@ export default function RootLayout({
 								href={"/products/1" as Route}
 								title="All"
 							>
-								Produkty
+								Products
 							</ActiveLink>
 							<ActiveLink
 								activeClassName="underline"
@@ -48,10 +49,11 @@ export default function RootLayout({
 								href={"/categories/cap" as Route}
 								title="All"
 							>
-								Czapki
+								Cap
 							</ActiveLink>
 						</ul>
 					</nav>
+					<Search />
 					<div className="flex gap-2">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -60,9 +62,9 @@ export default function RootLayout({
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
 						>
 							<circle cx="8" cy="21" r="1" />
 							<circle cx="19" cy="21" r="1" />

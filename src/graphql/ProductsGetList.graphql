@@ -3,5 +3,11 @@ query ProductsGetList($page: Int!) {
 		data {
 			...ProductListItem
 		}
+		meta {
+			pagination {
+				pageCount
+				page
+			}
+		}
 	}
 }
