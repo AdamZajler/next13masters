@@ -1,0 +1,23 @@
+fragment Cart on OrderEntity {
+	id
+	attributes {
+		cart_item {
+			data {
+				id
+				attributes {
+					qty
+					product {
+						data {
+							id
+							attributes {
+								title
+								price
+								slug
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

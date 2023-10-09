@@ -1,0 +1,13 @@
+query ProductsGetList($page: Int!) {
+	products(pagination: { page: $page, pageSize: 4 }) {
+		data {
+			...ProductListItem
+		}
+		meta {
+			pagination {
+				pageCount
+				page
+			}
+		}
+	}
+}

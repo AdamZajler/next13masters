@@ -1,0 +1,7 @@
+mutation CartDeleteProduct($itemId: ID!) {
+	deleteCartItem(id: $itemId) {
+		data {
+			id
+		}
+	}
+}

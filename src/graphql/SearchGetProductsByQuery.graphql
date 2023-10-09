@@ -1,0 +1,7 @@
+query SearchGetProductsByQuery($query: String!) {
+	products(filters: { slug: { startsWith: $query } }) {
+		data {
+			...ProductListItem
+		}
+	}
+}

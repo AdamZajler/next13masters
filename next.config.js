@@ -3,14 +3,22 @@ const nextConfig = {
 	images: {
 		remotePatterns: [
 			{
-				hostname: "naszsklep-api.vercel.app",
+				protocol: "http",
+				hostname: "localhost",
 			},
 		],
 	},
 	experimental: {
-		typedRoutes: true,
 		mdxRs: true,
+		serverActions: true,
 	},
+	redirects: async () => [
+		{
+			source: "/categories/:slug",
+			destination: "/categories/:slug/1",
+			permanent: false,
+		},
+	],
 };
 
 const withMDX = require("@next/mdx")();

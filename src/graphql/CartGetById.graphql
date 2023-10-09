@@ -1,0 +1,7 @@
+query GetCartById($id: ID!) {
+	orders(filters: { id: { eq: $id } }, publicationState: PREVIEW) {
+		data {
+			...Cart
+		}
+	}
+}
