@@ -47,6 +47,50 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type CartItem = {
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  order?: Maybe<OrderEntityResponse>;
+  product?: Maybe<ProductEntityResponse>;
+  qty: Scalars['Int']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type CartItemEntity = {
+  attributes?: Maybe<CartItem>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type CartItemEntityResponse = {
+  data?: Maybe<CartItemEntity>;
+};
+
+export type CartItemEntityResponseCollection = {
+  data: Array<CartItemEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CartItemFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CartItemFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<CartItemFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CartItemFiltersInput>>>;
+  order?: InputMaybe<OrderFiltersInput>;
+  product?: InputMaybe<ProductFiltersInput>;
+  qty?: InputMaybe<IntFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type CartItemInput = {
+  order?: InputMaybe<Scalars['ID']['input']>;
+  product?: InputMaybe<Scalars['ID']['input']>;
+  qty?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type CartItemRelationResponseCollection = {
+  data: Array<CartItemEntity>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
@@ -107,7 +151,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = I18NLocale | Product | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = CartItem | I18NLocale | Order | Product | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   code?: Maybe<Scalars['String']['output']>;
@@ -219,6 +263,8 @@ export type JsonFilterInput = {
 export type Mutation = {
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createCartItem?: Maybe<CartItemEntityResponse>;
+  createOrder?: Maybe<OrderEntityResponse>;
   createProduct?: Maybe<ProductEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -226,6 +272,8 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteCartItem?: Maybe<CartItemEntityResponse>;
+  deleteOrder?: Maybe<OrderEntityResponse>;
   deleteProduct?: Maybe<ProductEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -244,7 +292,9 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateCartItem?: Maybe<CartItemEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
+  updateOrder?: Maybe<OrderEntityResponse>;
   updateProduct?: Maybe<ProductEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -260,6 +310,16 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationCreateCartItemArgs = {
+  data: CartItemInput;
+};
+
+
+export type MutationCreateOrderArgs = {
+  data: OrderInput;
 };
 
 
@@ -285,6 +345,16 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+};
+
+
+export type MutationDeleteCartItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteOrderArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -353,9 +423,21 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUpdateCartItemArgs = {
+  data: CartItemInput;
+  id: Scalars['ID']['input'];
+};
+
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID']['input'];
   info?: InputMaybe<FileInfoInput>;
+};
+
+
+export type MutationUpdateOrderArgs = {
+  data: OrderInput;
+  id: Scalars['ID']['input'];
 };
 
 
@@ -395,6 +477,60 @@ export type MutationUploadArgs = {
   info?: InputMaybe<FileInfoInput>;
   ref?: InputMaybe<Scalars['String']['input']>;
   refId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type Order = {
+  cart_item?: Maybe<CartItemRelationResponseCollection>;
+  cart_items?: Maybe<CartItemRelationResponseCollection>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type OrderCart_ItemArgs = {
+  filters?: InputMaybe<CartItemFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type OrderCart_ItemsArgs = {
+  filters?: InputMaybe<CartItemFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type OrderEntity = {
+  attributes?: Maybe<Order>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type OrderEntityResponse = {
+  data?: Maybe<OrderEntity>;
+};
+
+export type OrderEntityResponseCollection = {
+  data: Array<OrderEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type OrderFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<OrderFiltersInput>>>;
+  cart_item?: InputMaybe<CartItemFiltersInput>;
+  cart_items?: InputMaybe<CartItemFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<OrderFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<OrderFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type OrderInput = {
+  cart_item?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  cart_items?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type Pagination = {
@@ -472,10 +608,18 @@ export type ProductInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type PublicationState =
+  | 'LIVE'
+  | 'PREVIEW';
+
 export type Query = {
+  cartItem?: Maybe<CartItemEntityResponse>;
+  cartItems?: Maybe<CartItemEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  order?: Maybe<OrderEntityResponse>;
+  orders?: Maybe<OrderEntityResponseCollection>;
   product?: Maybe<ProductEntityResponse>;
   products?: Maybe<ProductEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
@@ -489,6 +633,18 @@ export type Query = {
 };
 
 
+export type QueryCartItemArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryCartItemsArgs = {
+  filters?: InputMaybe<CartItemFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
 export type QueryI18NLocaleArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
@@ -497,6 +653,19 @@ export type QueryI18NLocaleArgs = {
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryOrderArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryOrdersArgs = {
+  filters?: InputMaybe<OrderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -933,6 +1102,44 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type CartAddProductMutationVariables = Exact<{
+  orderId: Scalars['ID']['input'];
+  productId: Scalars['ID']['input'];
+  qty?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type CartAddProductMutation = { createCartItem?: { data?: { id?: string | null } | null } | null };
+
+export type CartCreateMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CartCreateMutation = { createOrder?: { data?: { id?: string | null, attributes?: { cart_item?: { data: Array<{ id?: string | null, attributes?: { qty: number, product?: { data?: { id?: string | null, attributes?: { title: string, price: number, slug?: string | null } | null } | null } | null } | null }> } | null } | null } | null } | null };
+
+export type CartDeleteProductMutationVariables = Exact<{
+  itemId: Scalars['ID']['input'];
+}>;
+
+
+export type CartDeleteProductMutation = { deleteCartItem?: { data?: { id?: string | null } | null } | null };
+
+export type GetCartByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetCartByIdQuery = { orders?: { data: Array<{ id?: string | null, attributes?: { cart_item?: { data: Array<{ id?: string | null, attributes?: { qty: number, product?: { data?: { id?: string | null, attributes?: { title: string, price: number, slug?: string | null } | null } | null } | null } | null }> } | null } | null }> } | null };
+
+export type CartFragment = { id?: string | null, attributes?: { cart_item?: { data: Array<{ id?: string | null, attributes?: { qty: number, product?: { data?: { id?: string | null, attributes?: { title: string, price: number, slug?: string | null } | null } | null } | null } | null }> } | null } | null };
+
+export type CartSetProductQtyMutationVariables = Exact<{
+  itemId: Scalars['ID']['input'];
+  qty: Scalars['Int']['input'];
+}>;
+
+
+export type CartSetProductQtyMutation = { updateCartItem?: { data?: { id?: string | null } | null } | null };
+
 export type ProductGetBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
@@ -985,6 +1192,31 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const CartFragmentDoc = new TypedDocumentString(`
+    fragment Cart on OrderEntity {
+  id
+  attributes {
+    cart_item {
+      data {
+        id
+        attributes {
+          qty
+          product {
+            data {
+              id
+              attributes {
+                title
+                price
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `, {"fragmentName":"Cart"}) as unknown as TypedDocumentString<CartFragment, unknown>;
 export const ProductListItemFragmentDoc = new TypedDocumentString(`
     fragment ProductListItem on ProductEntity {
   id
@@ -1007,6 +1239,95 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const CartAddProductDocument = new TypedDocumentString(`
+    mutation CartAddProduct($orderId: ID!, $productId: ID!, $qty: Int = 1) {
+  createCartItem(data: {qty: $qty, product: $productId, order: $orderId}) {
+    data {
+      id
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartAddProductMutation, CartAddProductMutationVariables>;
+export const CartCreateDocument = new TypedDocumentString(`
+    mutation CartCreate {
+  createOrder(data: {cart_items: [], publishedAt: null}) {
+    data {
+      ...Cart
+    }
+  }
+}
+    fragment Cart on OrderEntity {
+  id
+  attributes {
+    cart_item {
+      data {
+        id
+        attributes {
+          qty
+          product {
+            data {
+              id
+              attributes {
+                title
+                price
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
+export const CartDeleteProductDocument = new TypedDocumentString(`
+    mutation CartDeleteProduct($itemId: ID!) {
+  deleteCartItem(id: $itemId) {
+    data {
+      id
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartDeleteProductMutation, CartDeleteProductMutationVariables>;
+export const GetCartByIdDocument = new TypedDocumentString(`
+    query GetCartById($id: ID!) {
+  orders(filters: {id: {eq: $id}}, publicationState: PREVIEW) {
+    data {
+      ...Cart
+    }
+  }
+}
+    fragment Cart on OrderEntity {
+  id
+  attributes {
+    cart_item {
+      data {
+        id
+        attributes {
+          qty
+          product {
+            data {
+              id
+              attributes {
+                title
+                price
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<GetCartByIdQuery, GetCartByIdQueryVariables>;
+export const CartSetProductQtyDocument = new TypedDocumentString(`
+    mutation CartSetProductQty($itemId: ID!, $qty: Int!) {
+  updateCartItem(id: $itemId, data: {qty: $qty}) {
+    data {
+      id
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartSetProductQtyMutation, CartSetProductQtyMutationVariables>;
 export const ProductGetBySlugDocument = new TypedDocumentString(`
     query ProductGetBySlug($slug: String!) {
   products(filters: {slug: {eq: $slug}}) {
@@ -1102,7 +1423,7 @@ export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
 }`) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList($page: Int!) {
-  products(pagination: {page: $page, pageSize: 3}) {
+  products(pagination: {page: $page, pageSize: 4}) {
     data {
       ...ProductListItem
     }

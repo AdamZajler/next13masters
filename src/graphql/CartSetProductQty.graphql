@@ -1,0 +1,7 @@
+mutation CartSetProductQty($itemId: ID!, $qty: Int!) {
+	updateCartItem(id: $itemId, data: { qty: $qty }) {
+		data {
+			id
+		}
+	}
+}

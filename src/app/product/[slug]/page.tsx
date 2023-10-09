@@ -1,19 +1,24 @@
 import { type Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { revalidateTag } from "next/cache";
 import { parsePrice } from "@/utils/parsePrice";
-import { executeGraphql } from "@/lib/executeGraphql";
+import { executeGraphQl } from "@/lib/executeGraphQl";
 import { ProductGetBySlugDocument } from "@/gql/graphql";
 import { generateStrapiUrl } from "@/utils/generateStrapiUrl";
 import { RelatedProducts } from "@/components/RelatedProducts";
-
+import { AddToCartButton } from "@/components/Button/AddToCartButton";
+import { addToCart, getOrCreateCart } from "@/services/cart";
 export const generateMetadata = async ({
 	params,
 }: {
 	params: { slug: string };
 }): Promise<Metadata> => {
-	const products = await executeGraphql(ProductGetBySlugDocument, {
-		slug: params.slug,
+	const products = await executeGraphQl({
+		query: ProductGetBySlugDocument,
+		variables: {
+			slug: params.slug,
+		},
 	});
 
 	if (!products.products?.data || !products.products.data[0]?.attributes) {
@@ -38,15 +43,38 @@ export default async function ProductPage({
 }: {
 	params: { slug: string };
 }) {
-	const products = await executeGraphql(ProductGetBySlugDocument, {
-		slug: params.slug,
+	const products = await executeGraphQl({
+		query: ProductGetBySlugDocument,
+		variables: {
+			slug: params.slug,
+		},
 	});
 
-	if (!products.products?.data || !products.products.data[0]?.attributes) {
+	if (
+		!products.products?.data ||
+		!products.products.data[0]?.attributes ||
+		!products.products.data[0].id
+	) {
 		notFound();
 	}
 
-	const product = products.products.data[0].attributes;
+	const product = {
+		id: products.products.data[0].id,
+		...products.products.data[0].attributes,
+	};
+
+	async function addToCartAction() {
+		"use server";
+
+		const cart = await getOrCreateCart();
+
+		if (!cart) {
+			throw new Error("Failed on addToCartAction");
+		}
+
+		await addToCart(cart.id!, product.id);
+		revalidateTag("cart");
+	}
 
 	return (
 		<div className="flex flex-col gap-20">
@@ -91,9 +119,12 @@ export default async function ProductPage({
 							__html: product.description,
 						}}
 					/>
+					<form action={addToCartAction}>
+						<AddToCartButton />
+					</form>
 				</div>
 			</div>
-			<RelatedProducts excludedProduct={products.products.data[0].id!} />
+			<RelatedProducts excludedProduct={products.products.data[0].id} />
 		</div>
 	);
 }

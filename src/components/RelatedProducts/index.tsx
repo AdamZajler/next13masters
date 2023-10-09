@@ -1,14 +1,17 @@
 import { ProductItem } from "../ProductItem";
 import { GetRelatedProductsDocument } from "@/gql/graphql";
-import { executeGraphql } from "@/lib/executeGraphql";
+import { executeGraphQl } from "@/lib/executeGraphQl";
 
 export const RelatedProducts = async ({
 	excludedProduct,
 }: {
 	excludedProduct: string;
 }) => {
-	const products = await executeGraphql(GetRelatedProductsDocument, {
-		slug: excludedProduct,
+	const products = await executeGraphQl({
+		query: GetRelatedProductsDocument,
+		variables: {
+			slug: excludedProduct,
+		},
 	});
 
 	if (!products.products) {

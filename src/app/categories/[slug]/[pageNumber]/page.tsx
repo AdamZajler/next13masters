@@ -3,7 +3,7 @@ import { type Metadata } from "next";
 import { Pagination } from "@/components/Pagination";
 import { ProductList } from "@/components/ProductList";
 import "@/components/main.css";
-import { executeGraphql } from "@/lib/executeGraphql";
+import { executeGraphQl } from "@/lib/executeGraphQl";
 import { ProductsGetByCategorySlugDocument } from "@/gql/graphql";
 
 export async function generateStaticParams() {
@@ -29,9 +29,12 @@ export default async function Home({
 }: {
 	params: { slug: string; pageNumber: string };
 }) {
-	const categories = await executeGraphql(ProductsGetByCategorySlugDocument, {
-		page: Number(params.pageNumber ? params.pageNumber[0] : 1),
-		slug: params.slug,
+	const categories = await executeGraphQl({
+		query: ProductsGetByCategorySlugDocument,
+		variables: {
+			page: Number(params.pageNumber ? params.pageNumber[0] : 1),
+			slug: params.slug,
+		},
 	});
 
 	if (!categories.products?.data) {

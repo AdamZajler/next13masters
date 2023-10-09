@@ -1,6 +1,6 @@
 import { ProductList } from "@/components/ProductList";
 import { SearchGetProductsByQueryDocument } from "@/gql/graphql";
-import { executeGraphql } from "@/lib/executeGraphql";
+import { executeGraphQl } from "@/lib/executeGraphQl";
 
 export const DisplaySearchResult = async ({
 	query,
@@ -10,8 +10,11 @@ export const DisplaySearchResult = async ({
 	if (!query) {
 		return null;
 	}
-	const res = await executeGraphql(SearchGetProductsByQueryDocument, {
-		query: query,
+	const res = await executeGraphQl({
+		query: SearchGetProductsByQueryDocument,
+		variables: {
+			query: query,
+		},
 	});
 
 	return res.products?.data ? (

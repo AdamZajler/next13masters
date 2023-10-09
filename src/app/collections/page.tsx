@@ -3,7 +3,7 @@ import Link from "next/link";
 import { type Route } from "next";
 import { Pagination } from "@/components/Pagination";
 import "@/components/main.css";
-import { executeGraphql } from "@/lib/executeGraphql";
+import { executeGraphQl } from "@/lib/executeGraphQl";
 import { ProductsGetListDocument } from "@/gql/graphql";
 
 export async function generateStaticParams() {
@@ -11,8 +11,11 @@ export async function generateStaticParams() {
 }
 
 export default async function Home() {
-	const products = await executeGraphql(ProductsGetListDocument, {
-		page: 1,
+	const products = await executeGraphQl({
+		query: ProductsGetListDocument,
+		variables: {
+			page: 1,
+		},
 	});
 
 	if (!products.products) {

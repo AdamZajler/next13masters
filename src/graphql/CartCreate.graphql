@@ -1,0 +1,7 @@
+mutation CartCreate {
+	createOrder(data: { cart_items: [], publishedAt: null }) {
+		data {
+			...Cart
+		}
+	}
+}
