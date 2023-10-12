@@ -28,7 +28,7 @@ export const generateMetadata = async ({
 
 	return {
 		title: product.title,
-		description: product.description,
+		description: `${product.description}`,
 		openGraph: {
 			title: product.title,
 			description: product.description,
@@ -113,11 +113,9 @@ export default async function ProductPage({
 							))}
 						</select>
 					) : null}
-					<p
-						dangerouslySetInnerHTML={{
-							__html: product.description,
-						}}
-					/>
+					<div className="mt-4 space-y-6">
+						<p>{product.description}</p>
+					</div>
 					<form action={addToCartAction}>
 						<AddToCartButton />
 					</form>

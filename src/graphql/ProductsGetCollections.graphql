@@ -1,0 +1,11 @@
+query ProductsGetCollections {
+	collections {
+		data {
+			id
+			attributes {
+				title
+				slug
+			}
+		}
+	}
+}

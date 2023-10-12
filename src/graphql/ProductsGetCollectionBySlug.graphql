@@ -1,0 +1,16 @@
+query ProductsGetCollectionsBySlug($slug: String!) {
+	collections(filters: { slug: { eq: $slug } }) {
+		data {
+			id
+			attributes {
+				title
+				slug
+				products {
+					data {
+						...ProductListItem
+					}
+				}
+			}
+		}
+	}
+}
