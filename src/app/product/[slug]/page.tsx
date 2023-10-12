@@ -5,7 +5,6 @@ import { revalidateTag } from "next/cache";
 import { parsePrice } from "@/utils/parsePrice";
 import { executeGraphQl } from "@/lib/executeGraphQl";
 import { ProductGetBySlugDocument } from "@/gql/graphql";
-import { generateStrapiUrl } from "@/utils/generateStrapiUrl";
 import { RelatedProducts } from "@/components/RelatedProducts";
 import { AddToCartButton } from "@/components/Button/AddToCartButton";
 import { addToCart, getOrCreateCart } from "@/services/cart";
@@ -83,7 +82,7 @@ export default async function ProductPage({
 					<div className="relative h-full min-h-[400px] w-full">
 						{product.images.data[0]?.attributes?.url ? (
 							<Image
-								src={generateStrapiUrl(product.images.data[0].attributes.url)}
+								src={product.images.data[0].attributes.url}
 								alt={`Obraz produktu ${product.title}`}
 								style={{
 									objectFit: "contain",

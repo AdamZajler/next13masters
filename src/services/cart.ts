@@ -57,7 +57,6 @@ export async function addToCart(orderId: string, productId: string) {
 
 	if (productInCart) {
 		qty = (productInCart.attributes?.qty as number) + 1;
-
 		await executeGraphQl({
 			query: CartDeleteProductDocument,
 			variables: { itemId: productInCart.id! },

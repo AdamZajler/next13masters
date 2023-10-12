@@ -5,7 +5,6 @@ import Image from "next/image";
 import { AddToCartButtonShort } from "../AddToCartButtonShort";
 import { parsePrice } from "@/utils/parsePrice";
 import { type ProductListItemFragment } from "@/gql/graphql";
-import { generateStrapiUrl } from "@/utils/generateStrapiUrl";
 
 export const ProductItem = (product: ProductListItemFragment) => {
 	const url = `/product/${product.attributes!.slug}` as Route;
@@ -18,9 +17,7 @@ export const ProductItem = (product: ProductListItemFragment) => {
 						width={320}
 						height={320}
 						alt={`Obraz produktu ${product.attributes.title}`}
-						src={generateStrapiUrl(
-							product.attributes.images.data[0].attributes?.url,
-						)}
+						src={product.attributes.images.data[0].attributes?.url}
 						className="h-full w-full object-cover object-center p-4 transition-transform hover:scale-105"
 					/>
 				</div>
