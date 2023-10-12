@@ -43,7 +43,7 @@ export default async function RootLayout({
 								href={"/products"}
 								title="All"
 							>
-								Products
+								All
 							</ActiveLink>
 							<ActiveLink
 								activeClassName="underline"
