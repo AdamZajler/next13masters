@@ -1,0 +1,23 @@
+query CartGetByEmail($email: String!) {
+	orders(filters: { email: { eq: $email } }) {
+		data {
+			id
+			attributes {
+				email
+				cart_item {
+					data {
+						id
+						attributes {
+							qty
+							product {
+								data {
+									...ProductListItem
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

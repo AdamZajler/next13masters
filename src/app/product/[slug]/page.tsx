@@ -8,6 +8,7 @@ import { ProductGetBySlugDocument } from "@/gql/graphql";
 import { RelatedProducts } from "@/components/RelatedProducts";
 import { AddToCartButton } from "@/components/Button/AddToCartButton";
 import { addToCart, getOrCreateCart } from "@/services/cart";
+import { Reviews } from "@/components/Reviews";
 export const generateMetadata = async ({
 	params,
 }: {
@@ -121,6 +122,7 @@ export default async function ProductPage({
 					</form>
 				</div>
 			</div>
+			<Reviews productId={product.id} />
 			<RelatedProducts excludedProduct={products.products.data[0].id} />
 		</div>
 	);

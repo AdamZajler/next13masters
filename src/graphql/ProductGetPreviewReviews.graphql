@@ -1,0 +1,10 @@
+query ProductGetPreviewReviews($productId: ID!) {
+	reviews(
+		filters: { product: { id: { eq: $productId } } }
+		publicationState: PREVIEW
+	) {
+		data {
+			...ProductReviews
+		}
+	}
+}

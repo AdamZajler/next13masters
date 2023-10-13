@@ -5,6 +5,7 @@ import { ProductList } from "@/components/ProductList";
 import "@/components/main.css";
 import { executeGraphQl } from "@/lib/executeGraphQl";
 import { ProductsGetByCategorySlugDocument } from "@/gql/graphql";
+import { SortSelect } from "@/components/SortSelect";
 
 export async function generateStaticParams() {
 	return [
@@ -26,14 +27,17 @@ export const generateMetadata = async ({
 
 export default async function Home({
 	params,
+	searchParams,
 }: {
 	params: { slug: string; pageNumber: string };
+	searchParams: { sort?: string };
 }) {
 	const categories = await executeGraphQl({
 		query: ProductsGetByCategorySlugDocument,
 		variables: {
 			page: Number(params.pageNumber ? params.pageNumber[0] : 1),
 			slug: params.slug,
+			sort: searchParams?.sort || null,
 		},
 	});
 
@@ -47,6 +51,7 @@ export default async function Home({
 				{params.slug.charAt(0).toUpperCase() + params.slug.slice(1)}
 			</h1>
 			<main className="container-xl flex min-h-screen w-full flex-col items-center justify-between p-24">
+				<SortSelect />
 				<ProductList products={categories.products.data} />
 				<div className="mt-12">
 					<Pagination

@@ -1,0 +1,11 @@
+fragment ProductReviews on ReviewEntity {
+	id
+	attributes {
+		title
+		content
+		rating
+		name
+		email
+		createdAt
+	}
+}

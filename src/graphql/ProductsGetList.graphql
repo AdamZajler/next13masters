@@ -1,5 +1,5 @@
-query ProductsGetList($page: Int!) {
-	products(pagination: { page: $page, pageSize: 4 }) {
+query ProductsGetList($page: Int!, $sort: [String] = ["price:asc"]) {
+	products(pagination: { page: $page, pageSize: 4 }, sort: $sort) {
 		data {
 			...ProductListItem
 		}
