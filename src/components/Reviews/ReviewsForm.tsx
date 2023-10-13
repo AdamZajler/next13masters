@@ -24,6 +24,7 @@ export const ReviewsForm = ({
 
 	async function handleSendReviewAction(formData: FormData) {
 		const res = await sendReviewForm(formData, productId);
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		setOptimisticPreviewReviews([...(reviewPreview.reviews?.data || []), res]);
 	}
