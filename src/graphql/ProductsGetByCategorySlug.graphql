@@ -1,7 +1,12 @@
-query ProductsGetByCategorySlug($page: Int!, $slug: String!) {
+query ProductsGetByCategorySlug(
+	$page: Int!
+	$slug: String!
+	$sort: [String] = ["price:asc"]
+) {
 	products(
 		pagination: { page: $page, pageSize: 3 }
 		filters: { categories: { eq: $slug } }
+		sort: $sort
 	) {
 		data {
 			...ProductListItem

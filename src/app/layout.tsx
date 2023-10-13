@@ -2,6 +2,13 @@ import "./globals.css";
 import type { Metadata, Route } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import {
+	ClerkProvider,
+	SignInButton,
+	SignedIn,
+	SignedOut,
+	UserButton,
+} from "@clerk/nextjs";
 import { ActiveLink } from "@/components/ActiveLink";
 import { Search } from "@/components/Search";
 import { getCartByFromCookies } from "@/services/cart";
@@ -25,68 +32,78 @@ export default async function RootLayout({
 	});
 
 	return (
-		<html lang="en">
-			<body className={inter.className}>
-				<div className="ju flex justify-between p-8">
-					<nav>
-						<ul className="flex justify-center gap-4">
-							<ActiveLink
-								activeClassName="underline"
-								href="/"
-								title="Home"
-								exact={false}
-							>
-								Home
-							</ActiveLink>
-							<ActiveLink
-								activeClassName="underline"
-								href={"/products"}
-								title="All"
-							>
-								All
-							</ActiveLink>
-							<ActiveLink
-								activeClassName="underline"
-								href={"/categories/t-shirts" as Route}
-								title="t-shirts"
-							>
-								T-shirts
-							</ActiveLink>
-							<ActiveLink
-								activeClassName="underline"
-								href={"/categories/cap" as Route}
-								title="cap"
-							>
-								Cap
-							</ActiveLink>
-						</ul>
-					</nav>
-					<Search />
-					<Link href="/cart">
-						<div className="flex gap-2">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							>
-								<circle cx="8" cy="21" r="1" />
-								<circle cx="19" cy="21" r="1" />
-								<path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-							</svg>
-							{quantity}
+		<ClerkProvider>
+			<html lang="en">
+				<body className={inter.className}>
+					<div className="ju flex justify-between p-8">
+						<nav>
+							<ul className="flex justify-center gap-4">
+								<ActiveLink
+									activeClassName="underline"
+									href="/"
+									title="Home"
+									exact={false}
+								>
+									Home
+								</ActiveLink>
+								<ActiveLink
+									activeClassName="underline"
+									href={"/products"}
+									title="All"
+								>
+									All
+								</ActiveLink>
+								<ActiveLink
+									activeClassName="underline"
+									href={"/categories/t-shirts" as Route}
+									title="t-shirts"
+								>
+									T-shirts
+								</ActiveLink>
+								<ActiveLink
+									activeClassName="underline"
+									href={"/categories/cap" as Route}
+									title="cap"
+								>
+									Cap
+								</ActiveLink>
+							</ul>
+						</nav>
+						<Search />
+						<div className="flex flex gap-8">
+							<SignedIn>
+								<UserButton />
+							</SignedIn>
+							<SignedOut>
+								<SignInButton />
+							</SignedOut>
+							<Link href="/cart">
+								<div className="flex gap-2">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										strokeWidth="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									>
+										<circle cx="8" cy="21" r="1" />
+										<circle cx="19" cy="21" r="1" />
+										<path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+									</svg>
+									{quantity}
+								</div>
+							</Link>
 						</div>
-					</Link>
-				</div>
-				<main className="container-xl flex min-h-screen flex-col items-center justify-between p-24">
-					{children}
-				</main>
-			</body>
-		</html>
+					</div>
+					<main className="container-xl flex min-h-screen flex-col items-center justify-between p-24">
+						{children}
+					</main>
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }

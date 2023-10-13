@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
+import { executeGraphQl } from "@/lib/executeGraphQl";
+import { CartSetOrderCompletedDocument } from "@/gql/graphql";
 
 export default async function CartSuccess({
 	searchParams,
@@ -22,5 +24,22 @@ export default async function CartSuccess({
 		searchParams.sessionId,
 	);
 
-	return <div>{session.payment_status}</div>;
+	if (!session.metadata?.cartId) {
+		redirect("/");
+	}
+
+	await executeGraphQl({
+		query: CartSetOrderCompletedDocument,
+		variables: {
+			orderId: session.metadata.cartId,
+			date: new Date().toISOString(),
+		},
+	});
+
+	return (
+		<div>
+			{/* <pre>{JSON.stringify(session, null, 2)}</pre> */}
+			{session.payment_status} {session.metadata.cartId}
+		</div>
+	);
 }

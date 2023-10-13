@@ -1,0 +1,7 @@
+mutation CartSetOrderCompleted($orderId: ID!, $date: DateTime!) {
+	updateOrder(id: $orderId, data: { publishedAt: $date }) {
+		data {
+			id
+		}
+	}
+}

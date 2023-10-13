@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
+import { currentUser } from "@clerk/nextjs";
 import {
 	CartAddProductDocument,
 	CartCreateDocument,
@@ -45,7 +46,13 @@ export async function getCartByFromCookies(): Promise<
 }
 
 export async function createCart() {
-	return executeGraphQl({ query: CartCreateDocument });
+	const user = await currentUser();
+	const email = user?.emailAddresses[0]?.emailAddress;
+
+	return executeGraphQl({
+		query: CartCreateDocument,
+		variables: { email: email || "unkown@gmail.com" },
+	});
 }
 
 export async function addToCart(orderId: string, productId: string) {

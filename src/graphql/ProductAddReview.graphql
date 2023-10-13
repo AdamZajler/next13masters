@@ -18,6 +18,13 @@ mutation ProductAddReview(
 	) {
 		data {
 			id
+			attributes {
+				title
+				content
+				rating
+				name
+				email
+			}
 		}
 	}
 }

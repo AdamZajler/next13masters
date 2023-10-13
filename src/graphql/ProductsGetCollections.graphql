@@ -5,6 +5,13 @@ query ProductsGetCollections {
 			attributes {
 				title
 				slug
+				image {
+					data {
+						attributes {
+							url
+						}
+					}
+				}
 			}
 		}
 	}
