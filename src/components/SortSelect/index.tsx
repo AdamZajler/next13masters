@@ -10,8 +10,8 @@ type OrderByType = {
 const ORDER_LIST: OrderByType[] = [
 	{ label: "PriceAsc.", value: "price:asc" },
 	{ label: "PriceDesc.", value: "price:desc" },
-	{ label: "RatingAsc.", value: "averageRating_ASC" },
-	{ label: "RatingDesc.", value: "averageRating_DESC" },
+	{ label: "RatingAsc.", value: "reviews_avg:asc" },
+	{ label: "RatingDesc.", value: "reviews_avg:desc" },
 ];
 export const SortSelect = () => {
 	const router = useRouter();

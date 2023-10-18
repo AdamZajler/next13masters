@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { handlePayAction } from "./actions";
 import { getCartByFromCookies } from "@/services/cart";
 import { parsePrice } from "@/utils/parsePrice";
@@ -11,7 +10,7 @@ export default async function CartPage() {
 		!cart?.attributes?.cart_item?.data ||
 		!cart.attributes.cart_item.data.length
 	) {
-		redirect("/");
+		return <h1>pusty koszyk</h1>;
 	}
 
 	return (

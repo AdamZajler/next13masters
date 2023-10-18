@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { type Route } from "next";
 import Image from "next/image";
-import { AddToCartButtonShort } from "../AddToCartButtonShort";
 import { parsePrice } from "@/utils/parsePrice";
 import { type ProductListItemFragment } from "@/gql/graphql";
 
@@ -25,10 +24,15 @@ export const ProductItem = (product: ProductListItemFragment) => {
 			<div className="flex w-full items-center justify-between text-left">
 				<div>
 					<h3>{product.attributes!.title}</h3>
-					<p>{parsePrice(product.attributes!.price)}</p>
+					<p data-testid="product-price">
+						{parsePrice(product.attributes!.price)}
+					</p>
 				</div>
 				<div>
-					<AddToCartButtonShort />
+					Opinie:{" "}
+					<span data-testid="product-rating">
+						{product.attributes?.reviews_avg || 0}/5
+					</span>
 				</div>
 			</div>
 		</Link>

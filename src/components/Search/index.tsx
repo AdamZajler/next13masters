@@ -25,5 +25,13 @@ export const Search = () => {
 		}
 	}, 500);
 
-	return <input type="search" onChange={(e) => handleSearch(e.target.value)} />;
+	return (
+		<input
+			type="search"
+			role="searchbox"
+			autoComplete="off"
+			name="serch"
+			onChange={(e) => handleSearch(e.target.value)}
+		/>
+	);
 };

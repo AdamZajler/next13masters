@@ -1,0 +1,15 @@
+mutation CartChangeCartItemQty(
+	$cartItemId: ID!
+	$orderId: ID!
+	$productId: ID!
+	$qty: Int!
+) {
+	updateCartItem(
+		id: $cartItemId
+		data: { product: $productId, order: $orderId, qty: $qty }
+	) {
+		data {
+			id
+		}
+	}
+}

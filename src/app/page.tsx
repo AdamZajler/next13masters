@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { ProductsGetCollectionsDocument } from "@/gql/graphql";
+import {
+	ProductsGetCollectionsDocument,
+	ProductsGetListDocument,
+} from "@/gql/graphql";
 import { executeGraphQl } from "@/lib/executeGraphQl";
+import { ProductList } from "@/components/ProductList";
 
 export default async function Home() {
 	const collections = await executeGraphQl({
@@ -11,6 +15,18 @@ export default async function Home() {
 
 	if (!collections.collections?.data) {
 		notFound();
+	}
+
+	const products = await executeGraphQl({
+		query: ProductsGetListDocument,
+		variables: {
+			page: 1,
+			sort: null,
+		},
+	});
+
+	if (!products.products) {
+		return notFound();
 	}
 
 	return (
@@ -40,6 +56,7 @@ export default async function Home() {
 				</div>
 
 				<h1 className="text-2xl">Strona główna</h1>
+				<ProductList products={products.products.data} />
 			</div>
 		</>
 	);

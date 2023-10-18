@@ -70,7 +70,7 @@ export default async function RootLayout({
 							</ul>
 						</nav>
 						<Search />
-						<div className="flex flex gap-8">
+						<div className="flex gap-8">
 							<SignedIn>
 								<UserButton />
 							</SignedIn>

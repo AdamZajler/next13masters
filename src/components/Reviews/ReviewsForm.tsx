@@ -18,15 +18,20 @@ export const ReviewsForm = ({
 	reviewPreview,
 	reviewsLive,
 }: ComponentProps) => {
+	const reviewsPreviewParsed = reviewPreview.reviews?.data
+		.map((rp) =>
+			reviewsLive.reviews?.data.some((rl) => rl.id === rp.id) ? [] : rp,
+		)
+		.flat();
 	const [optimisticPreviewReviews, setOptimisticPreviewReviews] = useOptimistic(
-		reviewPreview.reviews?.data || [],
+		reviewsPreviewParsed || [],
 	);
 
 	async function handleSendReviewAction(formData: FormData) {
 		const res = await sendReviewForm(formData, productId);
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
-		setOptimisticPreviewReviews([...(reviewPreview.reviews?.data || []), res]);
+		setOptimisticPreviewReviews([...(reviewsPreviewParsed || []), res]);
 	}
 
 	return (
@@ -67,6 +72,7 @@ export const ReviewsForm = ({
 					<h2>Brak opini o produkcie</h2>
 				) : (
 					<>
+						<h4>Recenzje: </h4>
 						{[...(optimisticPreviewReviews || [])].map((review, index) => (
 							<div key={index} className="opacity-40">
 								<h2 className="text-xl">
