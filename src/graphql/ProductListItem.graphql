@@ -16,5 +16,6 @@ fragment ProductListItem on ProductEntity {
 		categories
 		size
 		colors
+		reviews_avg
 	}
 }

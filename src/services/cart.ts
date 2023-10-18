@@ -6,7 +6,7 @@ import {
 	CartCreateDocument,
 	type CartFragment,
 	GetCartByIdDocument,
-	CartDeleteProductDocument,
+	CartChangeCartItemQtyDocument,
 } from "@/gql/graphql";
 import { executeGraphQl } from "@/lib/executeGraphQl";
 
@@ -62,11 +62,13 @@ export async function addToCart(orderId: string, productId: string) {
 		(item) => item.attributes?.product?.data?.id === productId,
 	);
 
+	console.log("productInCart", productInCart);
+
 	if (productInCart) {
 		qty = (productInCart.attributes?.qty as number) + 1;
 		await executeGraphQl({
-			query: CartDeleteProductDocument,
-			variables: { itemId: productInCart.id! },
+			query: CartChangeCartItemQtyDocument,
+			variables: { cartItemId: productInCart.id!, orderId, productId, qty },
 		});
 		revalidateTag("cart");
 

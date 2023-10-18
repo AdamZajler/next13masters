@@ -1,11 +1,13 @@
-query ProductGetPreviewReviews($productId: ID!) {
+query ProductGetAllReveiwsLive($productId: ID!) {
 	reviews(
 		filters: { product: { id: { eq: $productId } } }
 		pagination: { pageSize: 10000 }
-		publicationState: PREVIEW
+		publicationState: LIVE
 	) {
 		data {
-			...ProductReviews
+			attributes {
+				rating
+			}
 		}
 	}
 }
