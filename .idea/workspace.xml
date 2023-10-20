@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d46e3787-1f1b-4df8-b51a-e8bb6859dd02" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/next13masters.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.npmrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/shoe1_back.avif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/shoe1_back.avif:Zone.Identifier" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/shoe1_front.avif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/shoe1_front.avif:Zone.Identifier" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/webhook/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/webhook/stripe/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/cart/actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/cart/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/cart/success/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/categories/[slug]/[pageNumber]/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/collections/[slug]/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/collections/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/[[...sign-in]]/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/orders/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/product/[slug]/actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/product/[slug]/opengraph-image.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/product/[slug]/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/products/[pageNumber]/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/register/[[...sign-up]]/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/search/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ActiveLink/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddToCartButtonShort/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button/AddToCartButton/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Pagination/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProductItem/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProductList/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProductQty/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RelatedProducts/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Reviews/ReviewsForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Reviews/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Search/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SortSelect/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/SearchPage/DisplaySearchResult/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/SearchPage/SearchPageContainer/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gql/gql.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gql/graphql.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gql/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/CartAddProduct.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/CartChangeCartItemQty.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/CartCreate.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/CartDeleteProduct.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/CartGetByEmail.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/CartGetById.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/CartOrderFragment.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/CartSetOrderCompleted.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/CartSetProductQty.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductAddReview.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductGetAllReviewsLive.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductGetAllReviewsPreview.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductGetBySlug.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductGetLiveReviews.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductGetPreviewReviews.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductGetRelatedProducts.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductListItem.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductReviews.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductSetReviewsAvg.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductsGetByCategorySlug.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductsGetCollectionBySlug.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductsGetCollections.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductsGetList.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/ProductsGetListByPrice.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/SearchGetProductsByQuery.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/executeGraphQl.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/cart.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/generateStrapiUrl.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/parsePrice.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2WzV9fwjt0I1v6D0IjgbbmrOwVA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;21.0.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.8.7&quot;,
+    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\adamz\\Desktop\\next-template\\node_modules\\eslint&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\adamz\\Desktop\\next-template\\node_modules\\prettier&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\adamz\\Desktop\\next-template\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adamz\Desktop\next-template\src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d46e3787-1f1b-4df8-b51a-e8bb6859dd02" name="Changes" comment="" />
+      <created>1697735246194</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697735246194</updated>
+      <workItem from="1697735247396" duration="1323000" />
+      <workItem from="1697736907066" duration="553000" />
+      <workItem from="1697815212813" duration="950000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

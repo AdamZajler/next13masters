@@ -1,7 +1,0 @@
-mutation CartAddProduct($orderId: ID!, $productId: ID!, $qty: Int = 1) {
-	createCartItem(data: { qty: $qty, product: $productId, order: $orderId }) {
-		data {
-			id
-		}
-	}
-}

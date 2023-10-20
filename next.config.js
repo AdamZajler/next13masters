@@ -1,37 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	images: {
-		remotePatterns: [
-			{
-				protocol: "http",
-				hostname: "localhost",
-			},
-			{
-				protocol: "https",
-				hostname: "next13masters-ten-backend.onrender.com",
-			},
-			{
-				protocol: "https",
-				hostname: "res.cloudinary.com",
-			},
-		],
-	},
-	experimental: {
-		mdxRs: true,
-		serverActions: true,
-	},
-	redirects: async () => [
-		{
-			source: "/categories/:slug",
-			destination: "/categories/:slug/1",
-			permanent: false,
-		},
-		{
-			source: "/products",
-			destination: "/products/1",
-			permanent: false,
-		},
-	],
+    experimental: {
+        mdxRs: true,
+        serverActions: true,
+    },
 };
 
 const withMDX = require("@next/mdx")();

@@ -1,7 +1,0 @@
-mutation CartCreate($email: String!) {
-	createOrder(data: { cart_items: [], publishedAt: null, email: $email }) {
-		data {
-			...Cart
-		}
-	}
-}

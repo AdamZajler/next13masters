@@ -1,7 +1,0 @@
-query ProductGetBySlug($slug: String!) {
-	products(filters: { slug: { eq: $slug } }) {
-		data {
-			...ProductListItem
-		}
-	}
-}

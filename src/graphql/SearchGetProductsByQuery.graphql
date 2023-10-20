@@ -1,7 +1,0 @@
-query SearchGetProductsByQuery($query: String!) {
-	products(filters: { title: { startsWith: $query } }) {
-		data {
-			...ProductListItem
-		}
-	}
-}

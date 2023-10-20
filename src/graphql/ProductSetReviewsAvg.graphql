@@ -1,7 +1,0 @@
-mutation ProductSetReviewsAvg($productId: ID!, $reviewsAvg: Float!) {
-	updateProduct(id: $productId, data: { reviews_avg: $reviewsAvg }) {
-		data {
-			id
-		}
-	}
-}
